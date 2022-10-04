@@ -19,7 +19,7 @@ public class Almacenamiento extends Recopilatorio implements SeleccionUsuario{
         while (!cont.equalsIgnoreCase("n")) {
 
             String pregunta = p.preguntas();
-            ArrayList<String> almacen = p.respuestas();
+            String almacen = p.respuestas();
             String respuesta_correcta = p.respuestas_correctas();
 
             almacen_preguntas.add(pregunta);

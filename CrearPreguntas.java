@@ -13,7 +13,9 @@ public class CrearPreguntas implements Preguntas {
         String operacion = sc.nextLine();
         return operacion;
     }
-    public ArrayList<String> respuestas(){
+
+    public String respuestas(){
+
         String[] letras = {"a) ", "b) ", "c) ", "d) "};
         ArrayList<String> almacen = new ArrayList<String>();
 
@@ -24,7 +26,8 @@ public class CrearPreguntas implements Preguntas {
             String resultado = letras[i] + operacion;
             almacen.add(resultado);
         }
-        return almacen;
+        String almacen_string = String.valueOf(almacen.get(0)) + String.valueOf(almacen.get(1) )+ String.valueOf(almacen.get(2)) + String.valueOf(almacen.get(3));
+        return almacen_string;
     }
 
     public String respuestas_correctas(){

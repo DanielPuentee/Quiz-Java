@@ -5,6 +5,6 @@ import java.util.Scanner;
 public interface Preguntas {
 
     public String preguntas();
-    public ArrayList<String> respuestas();
+    public String respuestas();
 
 }
