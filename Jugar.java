@@ -14,9 +14,9 @@ public class Jugar extends Almacenamiento {
             ArrayList<ArrayList<String>> almacen = p.creacion_preguntas();
             juego(almacen);
         } else {
-            ArrayList<String> almacen_preguntas = p.almacen_preguntas_iniciales();
-            ArrayList<String> almacen_respuestas = p.almacen_respuestas_iniciales();
-            ArrayList<String> almacen_respuestas_correctas = p.almacen_respuestas_correctas();
+            ArrayList<String> almacen_preguntas = p.almacen_preguntas_iniciales;
+            ArrayList<String> almacen_respuestas = p.almacen_respuestas_iniciales;
+            ArrayList<String> almacen_respuestas_correctas = p.almacen_respuestas_correctas;
 
             ArrayList<ArrayList<String>> almacen = new ArrayList();
             almacen.add(almacen_preguntas);

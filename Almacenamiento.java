@@ -10,9 +10,9 @@ public class Almacenamiento extends Recopilatorio implements SeleccionUsuario{
 
         Recopilatorio p = new Recopilatorio();
         
-        ArrayList<String> almacen_preguntas = p.almacen_preguntas_iniciales();
-        ArrayList<String> almacen_respuestas = p.almacen_respuestas_iniciales();
-        ArrayList<String> almacen_respuestas_correctas = p.almacen_respuestas_correctas();
+        ArrayList<String> almacen_preguntas = p.almacen_preguntas_iniciales;
+        ArrayList<String> almacen_respuestas = p.almacen_respuestas_iniciales;
+        ArrayList<String> almacen_respuestas_correctas = p.almacen_respuestas_correctas;
         ArrayList<ArrayList<String>> almacen_return = new ArrayList();
         String cont = "s";
 
