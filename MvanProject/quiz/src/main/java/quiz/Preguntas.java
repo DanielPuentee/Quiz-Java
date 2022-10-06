@@ -1,10 +1,10 @@
+package quiz;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public interface Preguntas {
 
     public String preguntas();
-    public String respuestas();
+    public ArrayList<ArrayList<String>> respuestas();
 
 }

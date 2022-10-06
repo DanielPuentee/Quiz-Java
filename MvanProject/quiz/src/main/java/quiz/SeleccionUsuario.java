@@ -1,3 +1,4 @@
+package quiz;
 
 public interface SeleccionUsuario {
 
