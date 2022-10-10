@@ -1,4 +1,4 @@
-package quiz;
+package quiz.controller;
 
 public interface SeleccionUsuario {
 

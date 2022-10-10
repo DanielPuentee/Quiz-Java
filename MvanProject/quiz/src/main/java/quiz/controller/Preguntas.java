@@ -1,4 +1,4 @@
-package quiz;
+package quiz.controller;
 
 import java.util.ArrayList;
 
