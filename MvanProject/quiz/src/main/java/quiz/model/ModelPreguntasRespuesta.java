@@ -15,7 +15,6 @@ public class ModelPreguntasRespuesta{
         this.todas_respuestas = todas_respuestas;
         this.respuesta = respuesta;
         this.respuesta_letra = respuesta_letra;
-
     }
     public String getPregunta(){
         return this.pregunta;

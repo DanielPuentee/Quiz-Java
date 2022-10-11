@@ -5,12 +5,13 @@ import org.junit.Test;
 import quiz.view.Jugar;
 import org.mockito.*;
 
-import quiz.controller.CrearPreguntas;
-import java.sql.*;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+
 //import quiz.model.ConnectionBBDD;
 //import java.sql.Connection;
 
-public class AppTest {
+public class JugarTest {
     
     @Test
     public void usuarioCorrecto(){
@@ -49,32 +50,30 @@ public class AppTest {
     }
 
     @Test
-    public void setCorrectaMySqlPregunta(){
-        CrearPreguntas crearPreguntas = Mockito.mock(CrearPreguntas.class);
-        Mockito.when(crearPreguntas.addPregunta("admin", "1", "1","adaa")).thenReturn(true);
-        Boolean resultado = crearPreguntas.addPregunta("admin", "1", "1","adaa");
-
-        Assert.assertEquals(true, resultado);
+    public void dinamicaJuegoCorrecta(){
+       Jugar jugar = Mockito.mock(Jugar.class);
+       doNothing().when(jugar).dinamica_juego("usuario");
+       jugar.dinamica_juego("usuario");
+       verify(jugar).dinamica_juego("usuario");
     }
 
     @Test
-    public void setCorrectaMySqlResultados(){
-        CrearPreguntas crearPreguntas = Mockito.mock(CrearPreguntas.class);
-        Mockito.when(crearPreguntas.addResultado("usuario", "1", "1")).thenReturn(true);
-        Boolean resultado = crearPreguntas.addResultado("usuario", "1", "1");
-
-        Assert.assertEquals(true, resultado);
-    }
+    public void PreguntasS_N(){
+        Jugar jugar = Mockito.mock(Jugar.class);
+        Mockito.when(jugar.preguntas()).thenReturn("s");
+        String respuesta = jugar.preguntas();
+        
+        Assert.assertEquals("s", respuesta);
+     }
 
     @Test
-    public void getCorrectaMySqlPregunta(){
-        CrearPreguntas crearPreguntas = Mockito.mock(CrearPreguntas.class);
-        Mockito.when(crearPreguntas.getPreguntas()).thenReturn(null);
-        ResultSet resultado = crearPreguntas.getPreguntas();
+    public void PreguntasCorrectas(){
+        Jugar jugar = Mockito.mock(Jugar.class);
+        Mockito.when(jugar.respuestas_correctas()).thenReturn("a");
+        String respuesta = jugar.respuestas_correctas();
 
-        Assert.assertEquals(null, resultado);
-    }
-
+        Assert.assertEquals("a", respuesta);
+    }    
 
 
     //@Test

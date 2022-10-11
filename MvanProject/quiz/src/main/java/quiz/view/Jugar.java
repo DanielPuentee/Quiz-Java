@@ -25,8 +25,8 @@ public class Jugar extends ModelPreguntasRespuesta implements Preguntas{
             dinamica_juego(usuario);
         } else {dinamica_juego(usuario);}
     }
-
-    public static void dinamica_juego(String usuario){
+    //static
+    public void dinamica_juego(String usuario){
         CrearPreguntas crearPreguntas = new CrearPreguntas();
         try {
             ResultSet result = crearPreguntas.getPreguntas();
