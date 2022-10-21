@@ -5,29 +5,27 @@ import org.junit.Test;
 //import org.mockito.*;
 
 import quiz.model.ConnectionBBDD;
-import java.sql.*;
+//import java.sql.*;
+
+import static org.mockito.Mockito.*;
+import org.mockito.Mock;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class ConnectionBBDDTest {
 
 
-    ConnectionBBDD connectionBBDD = new ConnectionBBDD();
+    @Mock
+    ConnectionBBDD connectionBBDDMock;
+
 
     @Test
     public void conexionCorrecta(){
-        Connection conexion = connectionBBDD.conexion();
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz01", "root", "123456789");
-            Assert.assertNotEquals(conn, conexion);
-        }catch(Exception e){System.out.println(e);}
+        assertNotNull(connectionBBDDMock);
+        when(connectionBBDDMock.conexion()).thenReturn(null);
+        Assert.assertEquals(null, connectionBBDDMock.conexion());
         
     }
 
-    @Test 
-    public void conexionIncorrecta(){
-        Connection conexion = connectionBBDD.conexion();
-        Assert.assertNotEquals(null, conexion);
-    }
 
 
     

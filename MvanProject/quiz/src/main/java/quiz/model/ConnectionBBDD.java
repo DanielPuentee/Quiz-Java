@@ -6,15 +6,20 @@ import java.sql.Connection;
 
 public class ConnectionBBDD {
 
-    public Connection conexion(){
-        Connection conexion = null;
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz01", "root", "123456789");
-        }catch(Exception e){
-            System.out.println("Error al conectar con la base de datos");
-            conexion = null;
+    private String url = "jdbc:mysql://localhost:3306/quiz01";
+    private String user = "root";
+    private String password = "123456789";
+    private String driver = "com.mysql.cj.jdbc.Driver";
+    private String error = "Error al conectar con la base de datos";
+    private Connection conexion = null;
+
+    public Connection conexion() {
+
+        try {
+            Class.forName(driver);
+            conexion = DriverManager.getConnection(url, user, password);
         }
+        catch(Exception e) { System.out.println(error); }
         return conexion;
     }    
 
