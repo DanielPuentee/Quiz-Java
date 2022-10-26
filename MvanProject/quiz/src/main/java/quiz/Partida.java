@@ -5,14 +5,14 @@ import java.util.Scanner;
 import java.sql.*;
 
 
-public class Partida extends PreguntasDAO implements Pregunta {
+public class Partida {
 
     private Scanner sc = new Scanner(System.in);
-    private Integer respuestasIncorrectas = Pregunta.respuestasCorrectas;
-    private Integer respuestasCorrectas = Pregunta.respuestasCorrectas;
     private String usuario;
-    
-    PreguntasDAO preguntasDAO = new PreguntasDAO();
+    private PreguntasDAO preguntasDAO = new PreguntasDAO();
+    private Pregunta pregunta_aciertos = new Pregunta();
+    private Integer respuestasIncorrectas = pregunta_aciertos.respuestasCorrectas;
+    private Integer respuestasCorrectas = pregunta_aciertos.respuestasCorrectas;
     private ResultSet preguntas = preguntasDAO.getPreguntas();
 
     public Partida(String usuario) {

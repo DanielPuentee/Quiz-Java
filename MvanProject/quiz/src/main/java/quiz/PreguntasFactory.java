@@ -12,9 +12,7 @@ public class PreguntasFactory extends PreguntasDAO {
     private ArrayList<String> almacen_resultados = new ArrayList<String>();
     private ArrayList<String> almacen_operacion = new ArrayList<String>();
     private ArrayList<ArrayList<String>> almacen = new ArrayList<ArrayList<String>>();
-
-    
-    PreguntasDAO preguntasDAO = new PreguntasDAO();
+    private PreguntasDAO preguntasDAO = new PreguntasDAO();
 
     public PreguntasFactory(){}
 
