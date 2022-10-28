@@ -22,7 +22,7 @@ public class MainApp {
             }
             usuario = seleccionarUsuario();
         }
-        System.out.println("GRACIAS POR JUGAR !!!");
+        System.out.println("\n ****************** ¡¡¡ GRACIAS POR JUGAR !!! ****************** \n");
     }
 
     public static String seleccionarUsuario() {

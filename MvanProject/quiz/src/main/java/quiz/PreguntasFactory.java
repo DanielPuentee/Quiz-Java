@@ -3,7 +3,7 @@ package quiz;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class PreguntasFactory extends PreguntasDAO {
+public class PreguntasFactory {
 
     private String cont = "s";
     private Scanner sc = new Scanner(System.in);
@@ -13,6 +13,7 @@ public class PreguntasFactory extends PreguntasDAO {
     private ArrayList<String> almacen_operacion = new ArrayList<String>();
     private ArrayList<ArrayList<String>> almacen = new ArrayList<ArrayList<String>>();
     private PreguntasDAO preguntasDAO = new PreguntasDAO();
+    private Pregunta pregunta = new Pregunta();
 
     public PreguntasFactory(){}
 
@@ -21,7 +22,7 @@ public class PreguntasFactory extends PreguntasDAO {
         while (!cont.equalsIgnoreCase("n")) {
 
             System.out.println("Realice la pregunta: ");
-            String pregunta = sc.nextLine();
+            pregunta.texto = sc.nextLine();
             System.out.println("Indique cual va a ser la respuesta correcta: (a, b, c, d)");
             String respuesta_correcta = sc.nextLine();
 
@@ -53,7 +54,7 @@ public class PreguntasFactory extends PreguntasDAO {
             }
             Integer position_leter = aList.indexOf(respuesta_correcta);
             String respuesta_definitiva = almacen.get(1).get(position_leter);
-            preguntasDAO.addPregunta(pregunta, almacen_string, respuesta_definitiva, respuesta_correcta);
+            preguntasDAO.addPregunta(pregunta.texto, almacen_string, respuesta_definitiva, respuesta_correcta);
 
             System.out.println("Desea continuar generando preguntas? (s/n)");
             cont = sc.nextLine();
