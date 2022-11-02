@@ -10,9 +10,8 @@ public class Partida {
     private Scanner sc = new Scanner(System.in);
     private String usuario;
     private PreguntasDAO preguntasDAO = new PreguntasDAO();
-    private Pregunta pregunta_aciertos = new Pregunta();
-    private Integer respuestasIncorrectas = pregunta_aciertos.respuestasCorrectas;
-    private Integer respuestasCorrectas = pregunta_aciertos.respuestasCorrectas;
+    private Integer respuestasIncorrectaPuntuacion = 0;
+    private Integer respuestasCorrectasPuntuacion = 0;
     private ResultSet preguntas = preguntasDAO.getPreguntas();
 
     public Partida(String usuario) {
@@ -25,7 +24,7 @@ public class Partida {
 
     }
     public void mostrarPuntuacion(){
-        System.out.println("\nAciertos: " + respuestasCorrectas + "\nFallos: " + respuestasIncorrectas);
+        System.out.println("\nAciertos: " + respuestasCorrectasPuntuacion + "\nFallos: " + respuestasIncorrectaPuntuacion);
     }
     public void hacerPreguntas() {   
         try {
@@ -36,11 +35,11 @@ public class Partida {
                 System.out.println("\n" + "Escribe la respuesta correcta: ");
                 String respuesta = sc.nextLine();
 
-                if (verificarRespuesta(respuesta, preguntas)) { respuestasCorrectas++; } 
-                else { respuestasIncorrectas++; }
+                if (verificarRespuesta(respuesta, preguntas)) { respuestasCorrectasPuntuacion++; } 
+                else { respuestasIncorrectaPuntuacion++; }
             }
 
-            PreguntasDAO.addResultado(usuario, String.valueOf(respuestasCorrectas), String.valueOf(respuestasIncorrectas));
+            PreguntasDAO.addResultado(usuario, String.valueOf(respuestasCorrectasPuntuacion), String.valueOf(respuestasIncorrectaPuntuacion));
 
         } catch (Exception e) { System.out.println("\n" + e);}
     }
