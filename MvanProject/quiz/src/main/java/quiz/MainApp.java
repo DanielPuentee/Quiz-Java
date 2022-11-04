@@ -14,7 +14,7 @@ public class MainApp {
             PreguntasFactory preguntasFactory = new PreguntasFactory();
             if (usuario.equalsIgnoreCase("admin")) {
                 Partida partida = new Partida(usuario);
-                preguntasFactory.CrearPreguntas();
+                preguntasFactory.crearPreguntas();
                 partida.jugar();
             } else {
                 Partida partida = new Partida(usuario);

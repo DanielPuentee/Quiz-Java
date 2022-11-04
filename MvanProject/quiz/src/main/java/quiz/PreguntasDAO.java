@@ -1,56 +1,28 @@
 package quiz;
 
-import java.sql.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PreguntasDAO {
 
-    private static Connection conexion = null;
-    private static Connection conexion() {
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz01", "root", "123456789");
-        }
-        catch(Exception e) { System.out.println("Error al conectar con la base de datos"); }
-        return conexion;
-    }
-    
-    public void addPregunta(String pregunta, String todas_respuestas, String respuesta, String respuesta_letra){
-
-        try {
-            Connection con = conexion();
-            PreparedStatement myPreparedStatement = con.prepareStatement("INSERT INTO preguntas (pregunta, todas_respuestas, respuesta, respuesta_letra) VALUES (?, ?, ?, ?)");
-            myPreparedStatement.setString(1, pregunta);
-            myPreparedStatement.setString(2, todas_respuestas);
-            myPreparedStatement.setString(3, respuesta);
-            myPreparedStatement.setString(4, respuesta_letra);
-
-        } 
-        catch (Exception e) { System.out.println("Error al insertar la pregunta"); }
+    public static ArrayList<String> almacenPregunta = new ArrayList<String>(Arrays.asList("\nCual es el resultado de 8x2?", "\nQue pais tiene la mayor cantidad de islas en el mundo?"));
+    public static ArrayList<String> almacenTodasRespuestas = new ArrayList<String>(Arrays.asList("a) 16, b) 18, c) 20, d) 22", "a) Australia, b) Indonesia, c) Suecia, d) Rusia"));
+    public static ArrayList<String> almacenRespuesta = new ArrayList<String>(Arrays.asList("16", "Suecia"));
+    public static ArrayList<String> almacenRespuestaLetra = new ArrayList<String>(Arrays.asList("a", "c"));
+    public static ArrayList<ArrayList<String>> almacen = new ArrayList<ArrayList<String>>(Arrays.asList(almacenPregunta, almacenTodasRespuestas, almacenRespuesta, almacenRespuestaLetra));
+    public PreguntasDAO() {
     }
 
-    public ResultSet getPreguntas(){
-        
-        try {
-            Connection con = conexion();
-            Statement myStatement = con.createStatement();
-            ResultSet rs = myStatement.executeQuery("SELECT * FROM pruebas");
-            return rs;
-            
-        } catch (Exception e) { System.out.println("Error al seleccionar las preguntas"); }
-        return null;
+    public void addPregunta(String pregunta, String todasRespuestas, String respuesta, String respuestaLetra, ArrayList<ArrayList<String>> almacen){
+        Integer cantidadElementos = almacen.get(0).size();
+        almacen.get(0).add(cantidadElementos, pregunta);
+        almacen.get(1).add(cantidadElementos, todasRespuestas);
+        almacen.get(2).add(cantidadElementos, respuesta);
+        almacen.get(3).add(cantidadElementos, respuestaLetra);
+        PreguntasDAO.almacen = almacen;
     }
 
-    public static void addResultado(String usuario, String correctas, String fallos){
-            
-        try {
-            Connection con = conexion();
-            PreparedStatement myPreparedStatement = con.prepareStatement("INSERT INTO resultados (usuario, correctas, fallos) VALUES (?, ?, ?)");
-            myPreparedStatement.setString(1, usuario);
-            myPreparedStatement.setString(2, correctas);
-            myPreparedStatement.setString(3, fallos);
-
-        } catch (Exception e) { System.out.println("Error al insertar el resultado"); }
-}   
-
+    public ArrayList<ArrayList<String>> getPreguntas(){
+        return almacen;    
+    }
 }
