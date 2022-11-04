@@ -16,7 +16,7 @@ public class Partida {
     }
 
     public boolean verificarRespuesta(String respuesta, String preguntas) {
-        if (respuesta.equalsIgnoreCase(preguntas)) {  return true; } 
+        if (respuesta.equalsIgnoreCase(preguntas)) { return true; } 
         else { return false; }
 
     }

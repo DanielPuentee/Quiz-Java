@@ -10,6 +10,7 @@ public class PreguntasDAO {
     public static ArrayList<String> almacenRespuesta = new ArrayList<String>(Arrays.asList("16", "Suecia"));
     public static ArrayList<String> almacenRespuestaLetra = new ArrayList<String>(Arrays.asList("a", "c"));
     public static ArrayList<ArrayList<String>> almacen = new ArrayList<ArrayList<String>>(Arrays.asList(almacenPregunta, almacenTodasRespuestas, almacenRespuesta, almacenRespuestaLetra));
+    
     public PreguntasDAO() {
     }
 

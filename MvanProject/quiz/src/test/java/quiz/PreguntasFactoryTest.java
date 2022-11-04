@@ -18,9 +18,6 @@ public class PreguntasFactoryTest {
     
     PreguntasFactory preguntasFactoryMock = Mockito.mock(PreguntasFactory.class);
 
-    /**
-     * 
-     */
     @Test
     public void CrearPreguntasTest(){
         
