@@ -1,6 +1,5 @@
 package quiz;
 
-
 public class Pregunta {
 
     public String texto;
@@ -30,5 +29,4 @@ public class Pregunta {
     public void setRespuestasCorrectas(String respuestasCorrectas) {
         this.respuestasCorrectas = respuestasCorrectas;
     }
-
 }

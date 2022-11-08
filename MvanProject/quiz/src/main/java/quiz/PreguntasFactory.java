@@ -1,10 +1,18 @@
 package quiz;
 
+import quiz.PreguntasDAO;
+import quiz.PreguntasDAORepository;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
-public class PreguntasFactory {
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+public class PreguntasFactory implements PreguntasDAORepository {
 
     private String cont = "s";
     private Scanner sc = new Scanner(System.in);
@@ -12,26 +20,40 @@ public class PreguntasFactory {
     private ArrayList<String> almacen_resultados = new ArrayList<String>();
     private ArrayList<String> almacen_operacion = new ArrayList<String>();
     private ArrayList<ArrayList<String>> almacen = new ArrayList<ArrayList<String>>();
-    private PreguntasDAO preguntasDAO = new PreguntasDAO();
     private Pregunta pregunta = new Pregunta();
     private ArrayList<String> aList = new ArrayList<String>(Arrays.asList("a", "b", "c", "d"));
+    private List<PreguntasDAO> tutorials = new ArrayList<>();
 
     public PreguntasFactory(){}
 
     public void crearPreguntas(){
-
+        
+        tutorials = findAll();
         while (!cont.equalsIgnoreCase("n")) {
 
+
             privateSetTextAndRespuestasCorrectas();
-            Integer position_leter = aList.indexOf(pregunta.getRespuestasCorrectas());
             almacen = privateSetRespuestasCorrectasTexto();
-            String respuesta_definitiva = almacen.get(1).get(position_leter);
-            preguntasDAO.addPregunta(pregunta.getTexto(), pregunta.getrespuestasCorrectasTexto(), respuesta_definitiva, pregunta.getRespuestasCorrectas(), PreguntasDAO.almacen);
+            Random random = new Random();
+            Integer number = random.nextInt(1000);
+            integrateResults(number, pregunta.getTexto(), pregunta.getrespuestasCorrectasTexto(), "##################", pregunta.getRespuestasCorrectas());
             System.out.println("Desea continuar generando preguntas? (s/n)");
             cont = sc.nextLine();
         }
     }   
-
+    private static void integrateResults(Integer id, String pregunta, String todasLasRespuestas, String respuesta, String respuestaLetras) {
+        try {
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("quiz01");
+            EntityManager em = emf.createEntityManager();
+            em.getTransaction().begin();        
+            PreguntasDAO preguntasDAO = new PreguntasDAO(id, pregunta, todasLasRespuestas, respuesta, respuestaLetras);
+            em.persist(preguntasDAO);
+            em.getTransaction().commit();
+            em.close();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        } 
+    }
     private void privateSetTextAndRespuestasCorrectas(){
 
         // * Metodo para almacenar preguntas y respuestas * //
@@ -70,5 +92,77 @@ public class PreguntasFactory {
         pregunta.setrespuestasCorrectasTexto(almacen_string);
         return almacen;
 
+    }
+
+    @Override
+    public <S extends PreguntasDAO> S save(S entity) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public <S extends PreguntasDAO> Iterable<S> save(Iterable<S> entities) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public PreguntasDAO findOne(Integer id) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public boolean exists(Integer id) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public Iterable<PreguntasDAO> findAll(Iterable<Integer> ids) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public long count() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public void delete(Integer id) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void delete(PreguntasDAO entity) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void delete(Iterable<? extends PreguntasDAO> entities) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void deleteAll() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public List<PreguntasDAO> findAll() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void saveAll(List<PreguntasDAO> preguntasDAO) {
+        // TODO Auto-generated method stub
+        
     }
 }
