@@ -8,8 +8,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-
-public class Partida {
+//import org.springframework.web.bind.annotation.*;
+//@RestController
+//@RequestMapping()
+public class Partida  {
 
     EntityManagerFactory em = null;
     EntityManager en = null;
@@ -30,6 +32,12 @@ public class Partida {
         System.out.println("\nAciertos: " + respuestasCorrectasPuntuacion + "\nFallos: " + respuestasIncorrectaPuntuacion);
     }
     public void hacerPreguntas() { 
+        // PreguntasDAORepository preguntasDAORepository = new PreguntasDAORepository();
+        //List<PreguntasDAO> tutorial = (List<PreguntasDAO>) preguntasDAORepository.findAll();
+        //for (PreguntasDAO o: tutorial) {
+           // System.out.println(o);
+        //}
+
         EntityManager em = conexion();
         em.getTransaction().begin();
         List<Object[]> q = (List<Object[]>) em.createNativeQuery("SELECT p.pregunta, p.todasLasRespuestas, p.respuesta, p.respuestaLetras FROM jpa_prueba p").getResultList();
@@ -55,4 +63,5 @@ public class Partida {
         hacerPreguntas();
         mostrarPuntuacion();
     }
+
 }
