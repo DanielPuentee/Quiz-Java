@@ -4,3 +4,6 @@
 .vscode/
 *.class
 target/
+.mvn/
+mvnw
+mvnw.cmd
