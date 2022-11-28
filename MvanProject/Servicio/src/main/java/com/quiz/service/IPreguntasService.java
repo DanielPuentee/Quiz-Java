@@ -11,4 +11,5 @@ public interface IPreguntasService {
     PreguntasDAO update(PreguntasDAO preguntasDAO);
     List<PreguntasDAO> findAll();
     void delete(Integer id);
+    PreguntasDAO findByPregunta(String pregunta);
 }

@@ -71,4 +71,19 @@ class QuizApplicationTests {
 		.contentType(MediaType.APPLICATION_JSON).content(json))
         .andExpect(status().isOk());
 	}
+
+	@Test
+	public void findByPregunta() throws Exception {
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("id", 683);
+		jsonObject.put("pregunta", "Cuantos corazones tienes un pulpo");
+		jsonObject.put("todas_respuestas", "a) 6, b) 2, c) 3, d) 5");
+		jsonObject.put("respuesta", "##################");
+		jsonObject.put("respuesta_letra", "c");
+
+		String json = jsonObject.toJSONString();
+		mvc.perform(MockMvcRequestBuilders.get("/cuant")
+		.contentType(MediaType.APPLICATION_JSON).content(json))
+        .andExpect(status().isOk());
+	}
 }

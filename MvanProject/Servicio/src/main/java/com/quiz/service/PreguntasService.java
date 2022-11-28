@@ -4,7 +4,6 @@ import com.quiz.repository.PreguntasDAORepository;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,9 +38,12 @@ public class PreguntasService implements IPreguntasService {
     @Override
     public void delete(Integer id) {
         preguntasDAORepository.deleteById(id);
-        
     }
 
+    @Override
+    public PreguntasDAO findByPregunta(String pregunta) {
+        return preguntasDAORepository.findByPregunta(pregunta);
+    }
     
     
 }

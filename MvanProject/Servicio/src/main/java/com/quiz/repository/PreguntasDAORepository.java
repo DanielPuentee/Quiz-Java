@@ -8,6 +8,7 @@ import com.quiz.model.PreguntasDAO;
 
 @Repository
 public interface PreguntasDAORepository extends JpaRepository<PreguntasDAO, Integer> {
+    PreguntasDAO findByPregunta(String pregunta);
 
 }
 

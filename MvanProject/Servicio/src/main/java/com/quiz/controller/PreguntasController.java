@@ -16,6 +16,7 @@ import java.util.List;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
+import java.util.ArrayList;
 
 
 @RestController
@@ -52,6 +53,17 @@ public class PreguntasController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {
         preguntasService.delete(id);
+    }
+
+    @GetMapping("/{pregunta}")
+    public List<PreguntasDAO> findByPregunta(@PathVariable String pregunta) {
+        List<PreguntasDAO> preguntas = new ArrayList<PreguntasDAO>();
+        for (PreguntasDAO p : preguntasService.findAll()) {
+            if (p.getPregunta().toLowerCase().contains(pregunta.toLowerCase())) {
+                preguntas.add(p);
+            }
+        }
+        return preguntas;
     }
 }
 
