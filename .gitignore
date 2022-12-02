@@ -1,2 +1,9 @@
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
 *.class
 target/
+.mvn/
+mvnw
+mvnw.cmd
