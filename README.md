@@ -18,7 +18,7 @@ docker run -d --name mysql-spring --network app-spring mysql-spring:latest
 cd ..
 cd quiz/
 docker build -t app-spring .
-docker run --rm -it --name app-spring --network app-spring app-spring:latest
+docker run --rm -it --name app-spring -p 8080:8080 --network app-spring app-spring:latest
 ```
 
 ## 🔎 Search
